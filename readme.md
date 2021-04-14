@@ -64,6 +64,9 @@ curl --header "Content-Type: application/json" \
   -u admin:A11235813 \
   http://0.0.0.0:8000/peaks/peaks/1/
 
+# To query within a bounding box : lat between 42 and 44, lon between 3 and 6 (double slash at the end :()
+curl -H 'Accept: application/json; indent=4' -u admin:A11235813 http://0.0.0.0:8000/peaks/peaks/42/44/3/6//
+
 ```
 
 Tested with :
