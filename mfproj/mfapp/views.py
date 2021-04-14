@@ -11,7 +11,7 @@ class PeakViewSet(viewsets.ModelViewSet):
     """
     queryset = Peak.objects.all().order_by('name')
     serializer_class = PeakSerializer
-    # permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated]
 
 
 class PeakBoundingBoxViewSet(viewsets.ModelViewSet):
@@ -34,4 +34,4 @@ class PeakBoundingBoxViewSet(viewsets.ModelViewSet):
                                    ).order_by('name')
 
     serializer_class = PeakSerializer
-    # permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated]
