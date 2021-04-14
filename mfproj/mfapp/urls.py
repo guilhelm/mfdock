@@ -3,7 +3,9 @@ from rest_framework import routers
 from mfproj.mfapp import views
 
 router = routers.DefaultRouter()
-router.register(r'peaks', views.PeakViewSet)
+router.register(r'peaks', views.PeakViewSet, basename='Peak')
+router.register(r'peaks/(?P<lat_min>\d+)/(?P<lat_max>\d+)/(?P<lon_min>\d+)/(?P<lon_max>\d+)/',
+                views.PeakBoundingBoxViewSet, basename='Peak')
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
