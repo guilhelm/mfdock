@@ -23,15 +23,17 @@ The source code should be delivered using bitbucket or github with detailed expl
 ```shell
 git clone https://github.com/guilhelm/mfdock.git
 cd mfdock
+# Admin user/mail/password can be changed in .env file
 sudo docker-compose up
 ```
 
 # How to test
-Then on another terminal :
+Then on another terminal (adapt with credentials given before) :
 
 ```shell
 # Retrieve :
 curl -H 'Accept: application/json; indent=4' -u admin:A11235813 http://0.0.0.0:8000/peaks/peaks/
+
 # Create :
 curl --header "Content-Type: application/json" \
   --request POST \
@@ -43,8 +45,10 @@ curl --header "Content-Type: application/json" \
         }' \
   -u admin:A11235813 \
   http://0.0.0.0:8000/peaks/peaks/
+
 # Retrieve to check :
 curl -H 'Accept: application/json; indent=4' -u admin:A11235813 http://0.0.0.0:8000/peaks/peaks/
+
 # Update id=1
 curl --header "Content-Type: application/json" \
   --request PUT \
@@ -56,8 +60,10 @@ curl --header "Content-Type: application/json" \
         }' \
   -u admin:A11235813 \
   http://0.0.0.0:8000/peaks/peaks/1/
+
 # Retrieve to check :
 curl -H 'Accept: application/json; indent=4' -u admin:A11235813 http://0.0.0.0:8000/peaks/peaks/
+
 # Delete id=1
 curl --header "Content-Type: application/json" \
   --request DELETE \
