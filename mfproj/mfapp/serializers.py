@@ -5,4 +5,4 @@ from mfproj.mfapp.models import Peak
 class PeakSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Peak
-        fields = ['name', 'lat', 'lon', 'altitude']
+        fields = ['id', 'name', 'lat', 'lon', 'altitude']
