@@ -1,0 +1,44 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - migrate
+      - db
+  migrate:
+    build: .
+    command: python manage.py migrate --noinput
+    volumes:
+      - .:/code
+    depends_on:
+      - makemigrations
+  makemigrations:
+    build: .
+    command: python manage.py makemigrations
+    volumes:
+      - .:/code
+    depends_on:
+      - db
+  initadmin:
+    build: .
+    entrypoint: /bin/bash
+    command: -c "echo \"from django.contrib.auth.models import User; User.objects.create_superuser('${ADMIN_USER}', '${ADMIN_EMAIL}', '${ADMIN_PASS}')\" | python manage.py shell"
+    volumes:
+      - .:/code
+    depends_on:
+      - web
+
